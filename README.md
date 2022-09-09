@@ -81,5 +81,5 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 ![image](https://user-images.githubusercontent.com/64039135/189385737-338fba75-a751-43c7-8cd3-c2b947e63631.png)
 
 ### Also use emojis in chat
-![emoji](https://user-images.githubusercontent.com/64039135/189386209-b1479d97-6ab7-4112-9d3a-d161d0978d06.PNG)
+![image](https://user-images.githubusercontent.com/64039135/189386462-02f387bc-ba2b-492c-b7b1-bc26c35ae254.png)
 
