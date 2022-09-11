@@ -4,15 +4,24 @@ import { useNavigate } from 'react-router-dom';
 import Contacts from '../components/Contacts';
 import Welcome from '../components/Welcome';
 import ChatContainer from '../components/ChatContainer';
+import socketIOClient from "socket.io-client";
 
 function Chat() {
   const socket = useRef();
-  const navigate = useNavigate();
+  const mysocket = socketIOClient("http://localhost:8002", { transports : ['websocket'] });
   const [currentUser, setCurrentUser] = useState(undefined);
   const [contacts, setContacts] = useState([]);
   const [currentChat, setCurrentChat] = useState(undefined);
 
   useEffect(() => {
+
+    // make connection with server from user side
+    mysocket.on('connect', function(){
+  console.log('Connected to Server')
+  
+ 
+});
+
     async function fetchData() {
       setCurrentUser({
         "_id": 1,
@@ -22,13 +31,14 @@ function Chat() {
       });
     }
     fetchData();
+    return () => mysocket.disconnect();
   }, []);
 
   // get all chats contacts and details
   useEffect(() => {
     async function fetchData() {
       if (currentUser) {
-        fetch('http://localhost:8001/AllChats')
+        fetch('http://localhost:8002/AllChats')
           .then(response => response.json())
           .then(data => setContacts(data));
       }
@@ -80,4 +90,4 @@ height: 100vh;
   }
 `;
 
-export default Chat
+export default Chat;

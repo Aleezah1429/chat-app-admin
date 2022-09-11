@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components';
 import Logo from "../assets/logo.svg";
+import {RiMastodonLine,RiRadioButtonLine} from "react-icons/ri"
 
 function Contacts({ contacts, currentUser, changeChat }) {
 
@@ -47,7 +48,14 @@ function Contacts({ contacts, currentUser, changeChat }) {
                       />
                     </div>
                     <div className="name">
-                      <h3>{contact.name}</h3>
+                      <h3 style={{marginRight:"10%"}}>{contact.name}</h3>
+                      {
+                        contact.isActive?
+                        
+                      <h4 style={{color:"#00ff55",fontFamily:"monospace",fontSize:"15px"}}>(ONLINE)</h4>
+                      :null
+                    }
+
                     </div>
                   </div>
                 );
@@ -62,6 +70,7 @@ function Contacts({ contacts, currentUser, changeChat }) {
               </div>
               <div className="name">
                 <h2>{currentUserName}</h2>
+               
               </div>
             </div>
           </Container>
@@ -157,4 +166,4 @@ const Container = styled.div`
   }
 `;
 
-export default Contacts
+export default Contacts;
