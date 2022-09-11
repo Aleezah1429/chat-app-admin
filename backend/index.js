@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
+const socket = require("socket.io");
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cors());
@@ -24,8 +25,22 @@ app.post("/sendMsg", (req, res) => {
 });
 
 
-const PORT = process.env.PORT || 8001;
 
-app.listen(PORT, () => {
+const PORT = process.env.PORT || 8002;
+
+const server = app.listen(PORT, () => {
   console.log(`Server started on Port ${PORT}`);
+  
+});
+
+
+const io = socket(server);
+
+// make a connection with the user from server side
+io.on('connection', (socket)=>{
+  console.log('New user connected');
+  socket.on("disconnect", () => {
+    console.log("User disconnected");
+    
+  });
 });
